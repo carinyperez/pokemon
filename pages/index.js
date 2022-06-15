@@ -20,6 +20,7 @@ export default function Home() {
       <Head>
         <title>Pokemon List</title>
       </Head>
+      <h1 style={{color: 'blue'}}>Pokemon List</h1>
       <div>
           {
             pokemon.slice(0,10).map((pokemon) => (
