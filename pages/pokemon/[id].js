@@ -27,6 +27,7 @@ const Details = () => {
     return (
         <div> 
             <h3>{pokemon.name}</h3>
+            <p>{pokemon?.type?.slice(0,2).join(",")}</p>
             <img src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${pokemon.image}`}
             alt={pokemon.name}
             />
