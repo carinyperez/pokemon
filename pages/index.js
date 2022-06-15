@@ -28,7 +28,7 @@ export default function Home({pokemon}) {
 
 // returns an object with props, sends it to the react component which them renders them 
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const response = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
 
   return {
