@@ -4,17 +4,7 @@ import styles from '../styles/Home.module.css';
 import {useState} from 'react';
 import Link from 'next/link';
 
-export default function Home() {
-  const [pokemon, setPokemon] = useState([]); 
-
-  useEffect(() => {
-    const getPokemon = async () => {
-      const response = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
-      setPokemon(await response.json());
-    }
-    getPokemon();
-  },[]); 
-
+export default function Home({pokemon}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +13,7 @@ export default function Home() {
       <h1 style={{color: 'blue'}}>Pokemon List</h1>
       <div>
           {
-            pokemon.slice(0,10).map((pokemon) => (
+            pokemon?.slice(0,10).map((pokemon) => (
               <div key={pokemon.id}>
                <Link href={`/pokemon/${pokemon.id}`}>
                 <h3>{pokemon.name}</h3>
@@ -34,4 +24,17 @@ export default function Home() {
         </div>
     </div>
   )
+}
+
+// returns an object with props, sends it to the react component which them renders them 
+
+export const getServerSideProps = async () => {
+  const response = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
+
+  return {
+    props: {
+      pokemon: await response.json()
+    }
+  }
+
 }
