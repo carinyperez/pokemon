@@ -22,6 +22,8 @@ const Details = ({pokemon}) => {
 export const getStaticPaths = async () => {
     const url = `https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json`
     const response = await fetch(url);
+    const pokemon = await response.json(); 
+    
     return {
         paths: pokemon.map((pokemon) => ({
             params: {id : pokemon.id.toString()}
